@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context";
 import { HRVChart, HRVPanel } from "@/ui";
 import { MusicPlayer } from "@/ui/music-player";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export const SessionPage = () => {
   const { user, logout } = useAuth();
@@ -11,6 +11,27 @@ export const SessionPage = () => {
   const [chartData, setChartData] = useState<{ time: number; hrv: number }[]>(
     []
   );
+  const startTimeRef = useRef<number | null>(null);
+  const [dataSpeed] = useState(1000);
+
+  const handleHRVChange = (value: number) => {
+    setHRV(value);
+
+    if (!isPlaying) return;
+
+    if (startTimeRef.current === null) {
+      startTimeRef.current = Date.now();
+    }
+
+    const elapsedSeconds = Math.floor(
+      (Date.now() - startTimeRef.current) / 1000
+    );
+
+    setChartData((prev) => {
+      const next = [...prev, { time: elapsedSeconds, hrv: value }];
+      return next.slice(-100);
+    });
+  };
   return (
     <div className="min-h-screen bg-slate-50 p-6">
       <header className="flex items-center justify-between mb-6">
@@ -18,13 +39,12 @@ export const SessionPage = () => {
           <h1 className="text-xl font-semibold">Welcome, {user?.name}</h1>
           <p className="text-sm text-slate-500">Music Therapy Session</p>
         </div>
-
         <Button variant="outline" onClick={logout}>
           Logout
         </Button>
       </header>
       <main className="grid items-center grid-cols-1 lg:grid-cols-2 gap-6">
-        <HRVPanel onHRVChange={setHRV} />
+        <HRVPanel speed={dataSpeed} onHRVChange={handleHRVChange} />
         <MusicPlayer
           playing={isPlaying}
           onPlayChange={setIsPlaying}

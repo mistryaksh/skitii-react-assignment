@@ -31,7 +31,8 @@ function generateHRVReading(prev?: number): HRVReading {
 
 export const HRVPanel: React.FC<{
   onHRVChange?: (value: number) => void;
-}> = ({ onHRVChange }) => {
+  speed: number;
+}> = ({ onHRVChange, speed }) => {
   const [current, setCurrent] = useState<HRVReading>(() =>
     generateHRVReading()
   );
@@ -46,10 +47,10 @@ export const HRVPanel: React.FC<{
       prevValue.current = next.value;
       setCurrent(next);
       onHRVChange?.(next.value);
-    }, 3000);
+    }, speed);
 
     return () => clearInterval(interval);
-  }, [onHRVChange]);
+  }, [onHRVChange, speed]);
 
   const statusColor =
     current.status === "low"
