@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context";
+import { HRVPanel } from "@/ui";
 
 export const SessionPage = () => {
   const { user, logout } = useAuth();
@@ -15,6 +16,9 @@ export const SessionPage = () => {
           Logout
         </Button>
       </header>
+      <main className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <HRVPanel />
+      </main>
     </div>
   );
 };
