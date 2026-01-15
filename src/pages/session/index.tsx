@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context";
-import { HRVPanel } from "@/ui";
+import { HRVChart, HRVPanel } from "@/ui";
 import { MusicPlayer } from "@/ui/music-player";
 import { useState } from "react";
 
@@ -8,7 +8,9 @@ export const SessionPage = () => {
   const { user, logout } = useAuth();
   const [hrv, setHRV] = useState(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-
+  const [chartData, setChartData] = useState<{ time: number; hrv: number }[]>(
+    []
+  );
   return (
     <div className="min-h-screen bg-slate-50 p-6">
       <header className="flex items-center justify-between mb-6">
@@ -28,6 +30,9 @@ export const SessionPage = () => {
           onPlayChange={setIsPlaying}
           hrv={hrv}
         />
+        <div className="lg:col-span-2">
+          <HRVChart data={chartData} />
+        </div>
       </main>
     </div>
   );
