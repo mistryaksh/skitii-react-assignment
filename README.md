@@ -1,8 +1,9 @@
-# Skitii – AI-Powered Adaptive Music Therapy (Frontend Prototype)
+# Skitii – Adaptive Music Therapy (Frontend Prototype)
 
 ## Overview
 
-Skitii is a frontend prototype of an AI-powered adaptive music therapy platform for cancer patients. It simulates real-time HRV monitoring and adapts therapeutic music based on patient stress and relaxation levels, with a strong focus on healthcare-aware UX, security, and performance.
+This is Skitii assignment is a frontend prototype of an adaptive music therapy platform designed for cancer patients.
+This project simulates real-time HRV monitoring and adjusts therapeutic music using rule-based logic based on the patient’s stress and relaxation levels.
 
 ---
 

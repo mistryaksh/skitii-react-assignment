@@ -12,7 +12,8 @@ export const SessionPage = () => {
     []
   );
   const startTimeRef = useRef<number | null>(null);
-  const [dataSpeed] = useState(1000);
+  const HRV_INTERVAL_MS: number = 3000;
+  const [dataSpeed] = useState(HRV_INTERVAL_MS);
 
   const handleHRVChange = (value: number) => {
     setHRV(value);
