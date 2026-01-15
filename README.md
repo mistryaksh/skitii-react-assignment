@@ -48,6 +48,7 @@ Frequent HRV updates can cause UI lag if not handled carefully. To prevent this,
 * **Context API** (Auth and session state management)
 * **Recharts** (Real-time HRV data visualization)
 * **Tailwind CSS** (Calm, accessible healthcare-focused UI)
+* **ShadCN UI** (Per-made simple components for level UI/UX)
 
 ---
 
