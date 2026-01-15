@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context";
-import { HRVChart, HRVPanel } from "@/ui";
+import { HRVChart, HRVPanel, SessionHistory } from "@/ui";
 import { MusicPlayer } from "@/ui/music-player";
 import { useRef, useState } from "react";
 
@@ -52,6 +52,9 @@ export const SessionPage = () => {
         />
         <div className="lg:col-span-2">
           <HRVChart data={chartData} />
+        </div>
+        <div className="lg:col-span-2">
+          <SessionHistory />
         </div>
       </main>
     </div>
